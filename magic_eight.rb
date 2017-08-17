@@ -50,8 +50,12 @@ end
 def add_answers(answers)
   puts "Type the custom answer below to add it to the 8-ball"
   input = $stdin.gets.strip
-  puts "Answer added to list"
-  answers << input
+  if (answers.include?(input))
+    puts "Answer already in list — not added"
+  else
+    puts "Answer added to list"
+    answers << input
+  end
   get_input(answers)
 end
 

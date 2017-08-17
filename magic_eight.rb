@@ -25,7 +25,7 @@ answers = [
           ]
 end
 
-def get_input
+def get_input(answers)
   puts "Type a question to ge the answer, or type QUIT to exit the program"
   question = gets.strip
   
@@ -34,8 +34,23 @@ def get_input
     exit
   end
 
-  puts init_answers.sample
-  get_input
+  case question
+    when "add_answers"
+      puts "Type the custom answer below to add it to the 8-ball"
+      answers << gets.strip
+      puts "Answer added"
+    when "reset_answers"
+      answers = init_answers
+      puts "Answers reset to default"
+    when "print_answers"
+      "Here is the list of current answers"
+      puts answers.join("\n")
+    else
+      puts answers.sample
+  end
+  
+  get_input(answers)
 end
 
-get_input
+answers = init_answers
+get_input(answers)
